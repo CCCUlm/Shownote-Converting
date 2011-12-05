@@ -16,30 +16,26 @@
 
 import sys
 
-class ShownoteParser:
-
-    def __init__(self, shownotes):
 
 
-        self.shownotes = []
+def parse_shownotes(shownotestream=sys.stdin):
 
-        for line in shownotes:
-            line = line.split(' ')
-            time = line[0]
-            link = line[1]
-            description = ''
-            for rest in line[2:]:
-                description = description + rest + ' '
+    shownotes = []
 
-            self.shownotes.append((time, link, description.strip()))
+    for line in shownotestream:
+        line = line.split(' ')
+        time = line[0]
+        link = line[1]
+        description = ''
+        for rest in line[2:]:
+            description = description + rest + ' '
 
-        print(self.shownotes)
+        shownotes.append((time, link, description.strip()))
 
+    return shownotes
 
-    def get_notes(self):
-        return self.shownotes
 
 
 
 if __name__ == "__main__":
-    ShownoteParser(sys.stdin)
+    parse_shownotes(sys.stdin)

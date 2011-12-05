@@ -14,13 +14,12 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-import sys
-from shownoteparser import ShownoteParser
+from shownoteparser import parse_shownotes
 
-s = ShownoteParser(sys.stdin)
+s = parse_shownotes()
 
 print('<ul>')
-for note in s.get_notes():
+for note in s:
     if note[1] == '??':
         print('<li>' 
                 + note[0] + ' '
